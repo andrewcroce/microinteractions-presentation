@@ -1,0 +1,9 @@
+mixin slide(slide)
+  section
+    - if(typeof(slide) == 'string')
+      = slide
+    
+    - else if(typeof(slide) == 'object')
+      each childSlide in slide
+        +slide(childSlide)
+      
