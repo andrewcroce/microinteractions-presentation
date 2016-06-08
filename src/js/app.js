@@ -1,11 +1,18 @@
-var Reveal = require('reveal');
+var Reveal = require('reveal.js');
+var Highlightjs = require('highlightjs/highlight.pack.js');
+var RevealTitles = require('./plugins/revealTitles.js');
 
 Reveal.initialize({
+
+  // Custom property, show slide titles
+  // see `plugins/revealTitles.js`
+  titles: true,
+
   // See https://github.com/hakimel/reveal.js#configuration
   controls: true,
   progress: true,
   slideNumber: false,
-  history: false,
+  history: true,
   keyboard: true,
   overview: true,
   center: true,
@@ -23,7 +30,7 @@ Reveal.initialize({
   mouseWheel: false,
   hideAddressBar: true,
   previewLinks: false,
-  transition: 'default', // none/fade/slide/convex/concave/zoom
+  transition: 'slide', // none/fade/slide/convex/concave/zoom
   transitionSpeed: 'default', // default/fast/slow
   backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
   viewDistance: 3,
@@ -32,3 +39,7 @@ Reveal.initialize({
   parallaxBackgroundHorizontal: null,
   parallaxBackgroundVertical: null
 });
+
+RevealTitles.init(Reveal.getConfig());
+
+Highlightjs.initHighlightingOnLoad();
