@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Modular Scale
+   ========================================================================== */
+$ms-base: .75rem;
+$ms-ratio: 1.333; // perfect fourth / 3:4
+$ms-ratio-medium: 1.414; // augmented fourth / 1:√2
+$ms-ratio-large: 1.5; // perfect fifth / 2:3
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+$medium-up: new-breakpoint(min-width 640px);
+$large-up: new-breakpoint(min-width 1024px);
+
+
+/* ==========================================================================
+   Colors
+   ========================================================================== */
+$white: #fff;
+$grey: #3a4442;
+$medium-grey: #9ca7a5;
+$pale-grey: #e8e8e8;
+$transparent-grey: transparentize($grey, .5);
+$transparent-white: transparentize($white, .5);
+
+$red: #ff3348;
+$medium-red: #d82b3c;
+$dark-red: #b02331;
+
+$turquoise: #00b58c;
+$bright-turquoise: #70eace;
+$pale-turquoise: #d8f9f2;
+$transparent-turquoise: transparentize($pale-turquoise, .5);
+
+$blue: #009eff;
+$purple: #9852ff;
+$yellow: #ffc301;
+
+$shadow: rgba(0, 0, 0, .15);
+
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+$body-font: 'Roboto', sans-serif;
+$mono-font: 'Roboto Mono', monospace;

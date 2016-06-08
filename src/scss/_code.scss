@@ -1,0 +1,104 @@
+.reveal {
+  pre {
+    background: $pale-turquoise;
+    display: block;
+    text-align: left;
+    padding: 0 1rem;
+
+    code {
+      @include text-size(small);
+      text-align: left;
+      background: none;
+      line-height: 1.5;
+      padding: 0 1rem;
+
+      .hljs-comment {
+        color: $medium-grey;
+      }
+
+      .hljs-function {
+        color: $grey;  
+      }
+
+      .hljs-title,
+      .hljs-variable,
+      .hljs-attribute,
+      .hljs-tag,
+      .hljs-regexp,
+      .ruby .hljs-constant,
+      .xml .hljs-tag .hljs-title,
+      .xml .hljs-pi,
+      .xml .hljs-doctype,
+      .html .hljs-doctype,
+      .css .hljs-id,
+      .css .hljs-class,
+      .css .hljs-pseudo {
+        color: $red;
+      }
+
+      .hljs-number,
+      .hljs-preprocessor,
+      .hljs-pragma,
+      .hljs-built_in,
+      .hljs-literal,
+      .hljs-params,
+      .hljs-constant {
+        color: $red;
+      }
+
+      .coffeescript .hljs-title
+      .python .hljs-title,
+      .ruby .hljs-function .hljs-title,
+      .javascript .hljs-title,
+      .ruby .hljs-class .hljs-title,
+      .css .hljs-rule .hljs-attribute {
+        color: $red;
+      }
+
+
+      .hljs-string,
+      .hljs-value,
+      .hljs-inheritance,
+      .hljs-header,
+      .hljs-name,
+      .ruby .hljs-symbol,
+      .xml .hljs-cdata {
+        color: $blue;
+      }
+
+      .css .hljs-hexcolor {
+        color: $blue;
+      }
+
+      .python .hljs-decorator,
+      .ruby .hljs-title .hljs-keyword,
+      .perl .hljs-sub {
+        color: $blue;
+      }
+
+      .hljs-keyword,
+      .javascript .hljs-function {
+        color: $purple;
+      }
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        background: white;
+        color: $grey;
+        padding: 0.5em;
+        -webkit-text-size-adjust: none;
+      }
+
+      .coffeescript .javascript,
+      .javascript .xml,
+      .tex .hljs-formula,
+      .xml .javascript,
+      .xml .vbscript,
+      .xml .css,
+      .xml .hljs-cdata {
+        opacity: 0.5;
+      }
+    }
+  }
+}

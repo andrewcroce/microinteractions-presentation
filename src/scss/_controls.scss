@@ -1,0 +1,72 @@
+@mixin controls($style: light) {
+
+  $color: $red;
+
+  @if $style == dark {
+    $color: $white;
+  }
+
+  button {
+    opacity: .2;
+
+    &.enabled {
+      opacity: .7;  
+    }
+
+    // Left
+    &.navigate-left {
+      border-right-color: $color;
+
+      &.enabled {
+        border-right-color: $color;
+
+        &:hover {
+          border-right-color: $color;
+          opacity: 1;
+        }
+      }
+    }
+
+    // Right
+    &.navigate-right {
+      border-left-color: $color;
+
+      &.enabled {
+        border-left-color: $color;
+
+        &:hover {
+          border-left-color: $color;
+          opacity: 1;
+        }
+      }
+    }
+
+    // Bottom
+    &.navigate-down {
+      border-top-color: $color;
+
+      &.enabled {
+        border-top-color: $color;
+
+        &:hover {
+          border-top-color: $color;
+          opacity: 1;
+        }
+      }
+    }
+
+    // Top
+    &.navigate-up {
+      border-bottom-color: $color;
+
+      &.enabled {
+        border-bottom-color: $color;
+
+        &:hover {
+          border-bottom-color: $color;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
