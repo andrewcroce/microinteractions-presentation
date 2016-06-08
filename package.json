@@ -20,14 +20,19 @@
   },
   "homepage": "https://github.com/promptworks/promptworks-slides#readme",
   "devDependencies": {
+    "bourbon": "^4.2.7",
+    "bourbon-neat": "^1.7.4",
     "browser-sync": "^2.12.12",
     "browserify": "^13.0.1",
+    "fs": "0.0.2",
     "gulp": "^3.9.1",
-    "gulp-jade": "^1.1.0",
+    "gulp-nunjucks-render": "^2.0.0",
     "gulp-sass": "^2.3.1",
-    "reveal": "0.0.4",
+    "highlightjs": "^8.7.0",
+    "reveal.js": "git+https://github.com/hakimel/reveal.js.git",
     "rimraf": "^2.5.2",
     "run-sequence": "^1.2.1",
+    "slug": "^0.9.1",
     "vinyl-source-stream": "^1.1.0"
   }
 }
