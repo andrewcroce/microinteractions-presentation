@@ -2,9 +2,12 @@
 
 A slide presentation template built using [Reveal.js](https://github.com/hakimel/reveal.js) and [Gulp](http://gulpjs.com/).
 
-## Install everything
+## Installing dependencies
+From the root of this repo:
 
-`npm install`
+1. Install `node.js`: <https://docs.npmjs.com/getting-started/installing-node>
+2. `npm install --global gulp-cli`
+3. `npm install`
 
 ## The slide manifest
 The order and nesting of slides is maintained in `src/slideManifest.json`. Enter an array of slide names, or arrays of nested slides. You can name them whatever you like, but the numbers are probably a good idea, to maintain a nice file order. Slides can only be nested one level. For example:
