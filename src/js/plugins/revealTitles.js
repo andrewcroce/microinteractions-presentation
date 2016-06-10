@@ -1,11 +1,8 @@
-var Reveal = require('reveal.js');
+RevealTitles = {
 
-module.exports = {
+  init: function(Reveal) {
 
-  titleElement: null,
-
-  init: function(config) {
-
+    var config = Reveal.getConfig();
     var replaceSlideTitle = this.replaceSlideTitle;
 
     Reveal.addEventListener('ready', function(readyEvent) {
