@@ -1,11 +1,10 @@
-var Reveal = require('reveal.js');
-var Highlightjs = require('highlightjs/highlight.pack.js');
-var RevealTitles = require('./plugins/revealTitles.js');
+Reveal = require('reveal.js/js/reveal.js');
+var head = require('headjs/dist/1.0.0/head.js');
 
 Reveal.initialize({
 
   // Custom property, show slide titles
-  // see `plugins/revealTitles.js`
+  // see `custom_plugins/revealTitles.js`
   titles: true,
 
   // See https://github.com/hakimel/reveal.js#configuration
@@ -37,9 +36,14 @@ Reveal.initialize({
   parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
   parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
   parallaxBackgroundHorizontal: null,
-  parallaxBackgroundVertical: null
+  parallaxBackgroundVertical: null,
+  dependencies: [
+    { src: 'js/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'js/reveal.js/plugin/notes/notes.js', async: true },
+    { src: 'js/custom_plugins/revealTitles.js', async: true, callback: function() { RevealTitles.init(Reveal); } },
+  ]
 });
 
-RevealTitles.init(Reveal.getConfig());
+//RevealTitles.init(Reveal.getConfig());
 
-Highlightjs.initHighlightingOnLoad();
+//Highlightjs.initHighlightingOnLoad();
