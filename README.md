@@ -2,7 +2,16 @@
 
 A slide presentation template built using [Reveal.js](https://github.com/hakimel/reveal.js) and [Gulp](http://gulpjs.com/).
 
-## Installing dependencies
+## Installation
+
+### Install this repo
+
+`git clone https://github.com/promptworks/promptworks-slides.git --recursive`
+
+The `--recursive` flag installs submodules, of which Reveal.js is one.
+
+### Install dependencies
+
 From the root of this repo:
 
 1. Install `node.js`: <https://docs.npmjs.com/getting-started/installing-node>
