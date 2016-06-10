@@ -17,7 +17,8 @@ var PORT = 8000;
 // Assets to copy
 var ASSET_PATHS = [
   './src/img/**/*',
-  './src/js/plugins/**/*'
+  './src/js/reveal.js/**/*',
+  './src/js/custom_plugins/**/*'
 ];
 
 // Utility function to check if an object is a string
