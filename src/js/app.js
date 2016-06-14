@@ -40,7 +40,7 @@ Reveal.initialize({
   dependencies: [
     { src: 'js/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
     { src: 'js/reveal.js/plugin/notes/notes.js', async: true },
-    { src: 'js/custom_plugins/revealTitles.js', async: true, callback: function() { RevealTitles.init(Reveal); } },
+    { src: 'js/custom_plugins/revealTitles.js', async: false, callback: function() { RevealTitles.init(Reveal); } },
   ]
 });
 
