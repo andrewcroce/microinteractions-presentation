@@ -176,11 +176,23 @@ a,
 /* ==========================================================================
    Lists
    ========================================================================== */
-ul,
-ol {
+
+@mixin list($nested: false) {
   @include line-break;
-  //margin-left: 0;
+  @include text-size(default);
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  line-height: 1.75;
+  text-align: left;
+
+  @if $nested == nested {
+    font-size: 1em;
+    margin-bottom: 0;
+    padding-left: 1em;
+  }
 }
+
 
 
 /* ==========================================================================
