@@ -191,4 +191,22 @@ body {
       }
     }
   }
+
+
+  /* ==========================================================================
+     PromptWorks Intro Slide
+     ========================================================================== */
+  .promptworks-slide {
+    text-align: left;
+
+    img {
+      max-width: 25%;
+      margin-bottom: 5rem;
+    }
+
+    .intro {
+      @include text-size(xlarge);
+      max-width: 70%;
+    }
+  }
 }
