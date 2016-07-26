@@ -148,7 +148,8 @@ gulp.task('javascript', function() {
   })
     .bundle()
     .pipe(source('app.js'))
-    .pipe(gulp.dest('./build/js'));
+    .pipe(gulp.dest('./build/js'))
+    .pipe(browser.stream());
 });
 
 
