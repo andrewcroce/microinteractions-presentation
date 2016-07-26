@@ -107,6 +107,15 @@ body {
   .purple-text { color: $purple; }
   .yellow-text { color: $yellow; }
 
+  /* ==========================================================================
+     Background color classes
+     ========================================================================== */
+  .turquoise-bg { background: $turquoise; color: $white; }
+  .red-bg { background: $red; color: $white; }
+  .blue-bg { background: $blue; color: $white; }
+  .purple-bg { background: $purple; color: $white; }
+  .yellow-bg { background: $yellow; }
+
 
   /* ==========================================================================
      Lists
