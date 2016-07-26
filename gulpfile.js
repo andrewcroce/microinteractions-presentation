@@ -18,7 +18,8 @@ var PORT = 8000;
 var ASSET_PATHS = [
   './src/img/**/*',
   './src/js/reveal.js/**/*',
-  './src/js/custom_plugins/**/*'
+  './src/js/custom_plugins/**/*',
+  './src/fonts/**/*'
 ];
 
 // Utility function to check if an object is a string
