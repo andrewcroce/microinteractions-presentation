@@ -115,6 +115,15 @@ Class names are available to add text colors, or background colors to parts of a
 
 You can add `class="fragment"` to any number of elements in a slide to make them appear progressively, one by one. This is a Reveal.js built in behavior.
 
+You can also synchronize and alter the order that fragments appear by adding `data-fragment-index` attributes. As in:
+
+```
+<div class="fragment" data-fragment-index="2">Second</div>
+<div class="fragment" data-fragment-index="2">Also second</div>
+<div class="fragment" data-fragment-index="1">First</div>
+<div class="fragment" data-fragment-index="3">Third</div>
+```
+
 ### Syntax highlighting
 
 [Highlight.js](https://highlightjs.org/) syntax hightlighting is supported. Add the following HTML:
