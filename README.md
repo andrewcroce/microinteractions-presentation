@@ -6,17 +6,22 @@ A slide presentation template built using [Reveal.js](https://github.com/hakimel
 
 ### Install this repo
 
-`git clone https://github.com/promptworks/promptworks-slides.git --recursive`
+`git clone https://github.com/promptworks/promptworks-slides.git --recursive your-deck-name`
 
 The `--recursive` flag installs submodules, of which Reveal.js is one.
 
 ### Install dependencies
 
-From the root of this repo:
+Go to root of this repo: `cd your-deck-name`
 
-1. Install `node.js`: <https://docs.npmjs.com/getting-started/installing-node>
-2. `npm install --global gulp-cli`
-3. `npm install`
+1. Install `node.js` (if it isn't already installed): <https://docs.npmjs.com/getting-started/installing-node>
+2. Install Gulp command line interface (if it isn't already installed): `npm install --global gulp-cli`
+3. Install node packages: `npm install`
+
+## Development server
+
+Run `gulp` to build everything, and run a local development server with [Browsersync](https://www.browsersync.io/). Changes to your slides, slide manifest, SCSS, images, and JS are watched.
+
 
 ## The slide manifest
 The order and nesting of slides is maintained in `src/slideManifest.json`. Enter an array of slide names, or arrays of nested slides. You can name them whatever you like, but the numbers are probably a good idea, to maintain a nice file order. Slides can only be nested one level. For example:
@@ -33,7 +38,7 @@ The order and nesting of slides is maintained in `src/slideManifest.json`. Enter
 ]
 ```
 
-Run `gulp slides` to generate an HTML file for each of these slides in the `slides/` directory. They filenames will automatically be slugified:
+Run `gulp slides` manually to generate an HTML file for each of these slides in the `slides/` directory, or generate automatically while `gulp` dev server is running. They filenames will automatically be slugified:
 
 ```
 1-title-slide.html
@@ -42,6 +47,8 @@ Run `gulp slides` to generate an HTML file for each of these slides in the `slid
 3-2-another-nested-slide.html
 4-the-final-slide.html
 ```
+_Note: New slides are generated from new entries in the manifest, but **old slides are not deleted**. This is to prevent accidental, catastrophic loss of work in case of file name changes, etc. If you need to change file names, or remove unused slides, you'll need to do so manually._
+
 
 ## Edit Your Slides
 
@@ -53,6 +60,28 @@ By default, the title attributes will be displayed at the bottom left corner of 
 
 Alternatively, you can disable the title display behavior altogether in `src/js/app.js`. In the `Reveal.initialize();` block, change the `title` option to `false`.
 
+### Columns
+
+A slide (or parts of a slide) can be split into columns by using the following HTML and class name structure:
+
+```
+<div class="split">
+  <div class="half">Left</div>
+  <div class="half">Right</div>
+</div>
+
+<div class="split">
+  <div class="one-third">Left</div>
+  <div class="two-thirds">Right</div>
+</div>
+
+<div class="split">
+  <div class="one-third">Left</div>
+  <div class="one-third">Center</div>
+  <div class="one-third">Right</div>
+</div>
+```
+
 ### Slide Backgrounds
 
 There are a few options for changing the default white slide background. Add one of the following to a slide's `<section>` element:
@@ -61,6 +90,26 @@ There are a few options for changing the default white slide background. Add one
 - `data-state="turquoise-bg"` A pale turquoise background
 - `data-background="img/filename.ext"` A full-screen image background (this is a Reveal.js built in behavior)
   - `data-state="overlay"` A transparent white background surrounding the slide contents, useful on a slide with image background.
+
+### Colors
+
+Class names are available to add text colors, or background colors to parts of a slide.
+
+```
+<span class="red-text">...</span>
+<span class="turquoise-text">...</span>
+<span class="blue-text">...</span>
+<span class="purple-text">...</span>
+<span class="yellow-text">...</span>
+```
+
+```
+<div class="red-bg">...</div>
+<div class="turquoise-bg">...</div>
+<div class="blue-bg">...</div>
+<div class="purple-bg">...</div>
+<div class="yellow-bg">...</div>
+```
 
 ### Fragments
 
@@ -79,10 +128,6 @@ your code here
 ### Other stuff
 
 Check our [https://github.com/hakimel/reveal.js/](https://github.com/hakimel/reveal.js/) for other things Reveal.js can do.
-
-## Development server
-
-Run `gulp` to build everything, and run a local development server with [Browsersync](https://www.browsersync.io/). Changes to your slides, SCSS, and JS are watched.
 
 ## Build
 
