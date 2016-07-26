@@ -171,10 +171,10 @@ gulp.task('server', ['build'], function() {
 
 // `gulp`
 // Watch for changes, and do all the things
-gulp.task('default', ['build', 'server'], function() {
+gulp.task('default', ['server'], function() {
   gulp.watch(['src/img','src/img/**/*','src/fonts','src/fonts/**/*'], ['assets', browser.reload]);
-  gulp.watch(['src/js/**/*.js'], ['javascript', 'assets', browser.reload]);
+  gulp.watch(['src/js/**/*.js'], ['javascript']);
   gulp.watch(['src/scss/**/*.scss'], ['scss']);
-  gulp.watch(['src/**/*.html','src/**/*.njk'], ['templates']);
+  gulp.watch(['src/slides/**/*.html','src/**/*.njk'], ['templates']);
   gulp.watch(['src/slideManifest.json'], ['slides', 'templates', browser.reload]);
 });
