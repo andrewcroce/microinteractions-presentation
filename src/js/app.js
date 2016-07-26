@@ -1,4 +1,4 @@
-Reveal = require('reveal.js/js/reveal.js');
+Reveal = require('reveal.js');
 var head = require('headjs/dist/1.0.0/head.js');
 
 Reveal.initialize({

@@ -124,7 +124,8 @@ gulp.task('scss', function() {
   gulp.src('./src/scss/app.scss')
     .pipe(sass({
       includePaths: [
-        'node_modules'
+        'node_modules',
+        'src/js/reveal.js/css'
       ]
     }).on('error', sass.logError))
     .pipe(gulp.dest('./build/css'))
@@ -135,7 +136,10 @@ gulp.task('scss', function() {
 // `gulp javascript`
 // Bundle Javascript
 gulp.task('javascript', function() {
-  return browserify('./src/js/app.js')
+  return browserify({
+    entries: ['./src/js/app.js'],
+    paths: ['./node_modules','./src/js/']
+  })
     .bundle()
     .pipe(source('app.js'))
     .pipe(gulp.dest('./build/js'));
