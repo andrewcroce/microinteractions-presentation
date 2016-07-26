@@ -1,0 +1,18 @@
+@mixin split {
+  @include outer-container();
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+@mixin half {
+  @include span-columns(6);
+}
+
+@mixin one-third {
+  @include span-columns(4);
+}
+
+@mixin two-thirds {
+  @include span-columns(8);
+}
