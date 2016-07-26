@@ -166,6 +166,7 @@ gulp.task('server', ['build'], function() {
 // `gulp`
 // Watch for changes, and do all the things
 gulp.task('default', ['build', 'server'], function() {
+  gulp.watch(['src/img','src/img/**/*','src/fonts','src/fonts/**/*'], ['assets', browser.reload]);
   gulp.watch(['src/js/**/*.js'], ['javascript', 'assets', browser.reload]);
   gulp.watch(['src/scss/**/*.scss'], ['scss']);
   gulp.watch(['src/**/*.html','src/**/*.njk'], ['templates']);
