@@ -8,7 +8,7 @@ var sequence      = require('run-sequence');
 var sass          = require('gulp-sass');
 var fs            = require('fs');
 var slug          = require('slug');
-var slideManifest = require('./src/slideManifest.json');
+
 
 // Port on which the dev server will run
 var PORT = 8000;
@@ -21,6 +21,10 @@ var ASSET_PATHS = [
   './src/js/custom_plugins/**/*',
   './src/fonts/**/*'
 ];
+
+function slideManifest() {
+  return JSON.parse(fs.readFileSync('./src/slideManifest.json'));
+}
 
 // Utility function to check if an object is a string
 function isString(obj) {
@@ -85,7 +89,7 @@ gulp.task('templates', function(){
     .pipe(nunjucks({
       path: ['src'],
       data: {
-        slides: slideManifest
+        slides: slideManifest()
       },
       manageEnv: nunjucksEnv
     }))
@@ -101,7 +105,8 @@ gulp.task('slides', function(){
     fs.writeFile('./src/slides/'+name+'.html', '<section title="'+label+'">\n\n</section>');
     console.log('Created slide: '+name+'.html');
   };
-  slideManifest.forEach(function(slide) {
+  slideManifest().forEach(function(slide) {
+
     if(isString(slide)) {
       var name = slugify(slide);
       if(fileDoesntExist('./src/slides/'+name+'.html')) {
