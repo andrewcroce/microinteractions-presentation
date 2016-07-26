@@ -126,7 +126,7 @@ You can also synchronize and alter the order that fragments appear by adding `da
 
 ### Syntax highlighting
 
-[Highlight.js](https://highlightjs.org/) syntax hightlighting is supported. Add the following HTML:
+[Highlight.js](https://highlightjs.org/) syntax highlighting is supported. Add the following HTML:
 
 ```
 <pre><code class="your-language">
