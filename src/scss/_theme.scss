@@ -79,6 +79,14 @@ body {
 
     .red-bg & {
       @include code-style(dark);
+
+      @media print {
+        @include code-style(off);
+
+        [data-state='red-bg'] {
+          @include code-style(dark);
+        }
+      }
     }
   }
 
@@ -120,11 +128,13 @@ body {
   /* ==========================================================================
      Lists
      ========================================================================== */
-  ul, ol {
+  ul,
+  ol {
     @include list;
 
     li {
-      ul, ol {
+      ul,
+      ol {
         @include list(nested);
       }
     }
@@ -137,17 +147,42 @@ body {
 
   .turquoise-bg & {
     background: $transparent-turquoise;
+
+    @media print {
+      background: none;
+
+      [data-state='turquoise-bg'] .slide-background {
+        background: $transparent-turquoise;
+      }
+    }
   }
 
   .red-bg & {
     background: $red;
     color: $white;
+
+    @media print {
+      background: none;
+      color: inherit;
+
+      [data-state='red-bg'] {
+        color: $white;
+
+        .slide-background {
+          background: $red;
+        }
+      }
+    }
   }
 
-  .overlay & {
+  .overlay {
     section {
       background: transparentize($white, .25);
     }
+  }
+
+  [data-state="overlay"] {
+    background: transparentize($white, .25);
   }
 
 
