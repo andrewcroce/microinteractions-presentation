@@ -6,12 +6,13 @@
     padding: 0 1rem;
     margin-bottom: 1rem;
 
-    code {
+    code.hljs {
       @include text-size(small);
       text-align: left;
       background: none;
       line-height: 1.5;
       padding: 0 1rem;
+      color: $grey;
 
       .hljs-comment {
         color: $medium-grey;
@@ -26,14 +27,15 @@
       .hljs-attribute,
       .hljs-tag,
       .hljs-regexp,
-      .ruby .hljs-constant,
-      .xml .hljs-tag .hljs-title,
-      .xml .hljs-pi,
-      .xml .hljs-doctype,
-      .html .hljs-doctype,
-      .css .hljs-id,
-      .css .hljs-class,
-      .css .hljs-pseudo {
+      &.ruby .hljs-constant,
+      &.ruby .hljs-symbol,
+      &.xml .hljs-tag .hljs-title,
+      &.xml .hljs-pi,
+      &.xml .hljs-doctype,
+      &.html .hljs-doctype,
+      &.css .hljs-id,
+      &.css .hljs-class,
+      &.css .hljs-pseudo {
         color: $red;
       }
 
@@ -47,12 +49,12 @@
         color: $red;
       }
 
-      .coffeescript .hljs-title
-      .python .hljs-title,
-      .ruby .hljs-function .hljs-title,
-      .javascript .hljs-title,
-      .ruby .hljs-class .hljs-title,
-      .css .hljs-rule .hljs-attribute {
+      &.coffeescript .hljs-title
+      &.python .hljs-title,
+      &.ruby .hljs-function .hljs-title,
+      &.javascript .hljs-title,
+      &.ruby .hljs-class .hljs-title,
+      &.css .hljs-rule .hljs-attribute {
         color: $red;
       }
 
@@ -62,23 +64,22 @@
       .hljs-inheritance,
       .hljs-header,
       .hljs-name,
-      .ruby .hljs-symbol,
-      .xml .hljs-cdata {
+      &.xml .hljs-cdata {
         color: $blue;
       }
 
-      .css .hljs-hexcolor {
+      &.css .hljs-hexcolor {
         color: $blue;
       }
 
-      .python .hljs-decorator,
-      .ruby .hljs-title .hljs-keyword,
-      .perl .hljs-sub {
+      &.python .hljs-decorator,
+      &.ruby .hljs-title .hljs-keyword,
+      &.perl .hljs-sub {
         color: $blue;
       }
 
       .hljs-keyword,
-      .javascript .hljs-function {
+      &.javascript .hljs-function {
         color: $purple;
       }
 
@@ -91,13 +92,13 @@
         -webkit-text-size-adjust: none;
       }
 
-      .coffeescript .javascript,
-      .javascript .xml,
-      .tex .hljs-formula,
-      .xml .javascript,
-      .xml .vbscript,
-      .xml .css,
-      .xml .hljs-cdata {
+      &.coffeescript .javascript,
+      &.javascript .xml,
+      &.tex .hljs-formula,
+      &.xml .javascript,
+      &.xml .vbscript,
+      &.xml .css,
+      &.xml .hljs-cdata {
         opacity: 0.5;
       }
     }

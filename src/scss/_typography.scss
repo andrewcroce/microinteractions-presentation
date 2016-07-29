@@ -248,7 +248,7 @@ blockquote {
   @if $style == dark {
     background: $transparent-grey;
     color: $white;
-  } @else {
+  } @elseif $style == light {
     background: $pale-turquoise;
     color: $grey;
   }
