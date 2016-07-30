@@ -24,6 +24,7 @@ const ASSET_PATHS = [
 ];
 
 
+const onError = (err) => console.error(err.message);
 const slugify = (name) => slug(name, {lower: true});
 const flatten = (ary) => Array.prototype.concat.apply([], ary);
 const slideManifest = () => JSON.parse(fs.readFileSync(MANIFEST));
@@ -70,8 +71,9 @@ gulp.task('templates', () => {
         slides: structuredSlides()
       }
     }))
+    .on('error', onError)
     .pipe(gulp.dest('./build'))
-    .pipe(browser.stream());
+    .pipe(browser.stream())
 });
 
 
