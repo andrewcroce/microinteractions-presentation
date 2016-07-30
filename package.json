@@ -4,6 +4,9 @@
   "description": "Slide presentation template for PromptWorks using Reveal.js",
   "main": "index.js",
   "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "slides": "gulp slides",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
