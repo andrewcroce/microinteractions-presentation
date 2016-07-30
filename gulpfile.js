@@ -8,11 +8,12 @@ const sequence = require('run-sequence');
 const sass = require('gulp-sass');
 const fs = require('fs');
 const slug = require('slug');
-const slideManifest = require('./src/slideManifest.json');
 
 // Port on which the dev server will run
 const PORT = 8000;
 
+// Slide manifest file
+const MANIFEST = './src/slideManifest.json';
 
 // Assets to copy
 const ASSET_PATHS = [
@@ -22,38 +23,25 @@ const ASSET_PATHS = [
   './src/fonts/**/*'
 ];
 
-// Utility function to check if an object is a string
-function isString(obj) {
-  return Object.prototype.toString.call(obj) == '[object String]';
+
+const slugify = (name) => slug(name, {lower: true});
+const flatten = (ary) => Array.prototype.concat.apply([], ary);
+const slideManifest = () => JSON.parse(fs.readFileSync(MANIFEST));
+
+const structuredSlides = () => {
+  const toSlide = (title) => ({
+    title,
+    partial: `slides/${slugify(title)}.html`
+  });
+
+  return slideManifest().map(slide => {
+    if (Array.isArray(slide)) {
+      return {children: slide.map(toSlide)};
+    } else {
+      return toSlide(slide);
+    }
+  });
 }
-
-// Utility function to check if an object is an array
-function isArray(obj) {
-  return Object.prototype.toString.call(obj) == '[object Array]';
-}
-
-function slugify(string) {
-  return slug(string, {lower: true});
-}
-// Utility function to check if a file exists
-function fileDoesntExist(path) {
-  try {
-    fs.statSync(path);
-    return false;
-  } catch(error) {
-    return true;
-  }
-}
-
-
-// Custom Nunjucks environment
-// Adds filters to check if an object is a string or an array
-const nunjucksEnv = environment => {
-  environment.addFilter('is_string', obj => isString(obj));
-  environment.addFilter('is_array', obj => isArray(obj));
-  environment.addFilter('slugify', string => slugify(string));
-};
-
 
 // `gulp clean`
 // Clean the build directory
@@ -79,9 +67,8 @@ gulp.task('templates', () => {
     .pipe(nunjucks({
       path: ['src'],
       data: {
-        slides: slideManifest
-      },
-      manageEnv: nunjucksEnv
+        slides: structuredSlides()
+      }
     }))
     .pipe(gulp.dest('./build'))
     .pipe(browser.stream());
@@ -91,25 +78,14 @@ gulp.task('templates', () => {
 // `gulp slides`
 // Generate HTML files for slides named in the slideManifest.json
 gulp.task('slides', () => {
-  const writeSlideFile = (name, label) => {
-    fs.writeFile(`./src/slides/${name}.html`, `<section title="${label}">\n\n</section>`);
-    console.log(`Created slide: ${name}.html`);
-  };
-  slideManifest.forEach(slide => {
+  flatten(slideManifest()).forEach(title => {
+    const slug = slugify(title);
+    const filename = `./src/slides/${slug}.html`;
+    const content = `<section title="${title}">\n\n</section>`;
 
-    if(isString(slide)) {
-      const name = slugify(slide);
-      if(fileDoesntExist(`./src/slides/${name}.html`)) {
-        writeSlideFile(name,slide);
-      }
-    } else if (isArray(slide)) {
-      slide.forEach(childSlide => {
-        const name = slugify(childSlide);
-        if(fileDoesntExist(`./src/slides/${name}.html`)) {
-          writeSlideFile(name,childSlide);
-        }
-      });
-    }
+    fs.writeFile(filename, content, {flag: 'wx'}, err => {
+      if (!err) console.log(`Created slide: ${slug}.html`);
+    });
   });
 });
 
@@ -154,7 +130,8 @@ gulp.task('build', done => {
 // Run a development server
 gulp.task('server', ['build'], () => {
   browser.init({
-    server: './build', port: PORT
+    server: './build',
+    port: PORT
   });
 });
 
