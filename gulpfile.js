@@ -1,30 +1,26 @@
-var gulp          = require('gulp');
-var nunjucks      = require('gulp-nunjucks-render');
-var browserify    = require('browserify');
-var source        = require('vinyl-source-stream');
-var browser       = require('browser-sync');
-var rimraf        = require('rimraf');
-var sequence      = require('run-sequence');
-var sass          = require('gulp-sass');
-var fs            = require('fs');
-var slug          = require('slug');
-
+const gulp = require('gulp');
+const nunjucks = require('gulp-nunjucks-render');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const browser = require('browser-sync');
+const rimraf = require('rimraf');
+const sequence = require('run-sequence');
+const sass = require('gulp-sass');
+const fs = require('fs');
+const slug = require('slug');
+const slideManifest = require('./src/slideManifest.json');
 
 // Port on which the dev server will run
-var PORT = 8000;
+const PORT = 8000;
 
 
 // Assets to copy
-var ASSET_PATHS = [
+const ASSET_PATHS = [
   './src/img/**/*',
   './src/js/reveal.js/**/*',
   './src/js/custom_plugins/**/*',
   './src/fonts/**/*'
 ];
-
-function slideManifest() {
-  return JSON.parse(fs.readFileSync('./src/slideManifest.json'));
-}
 
 // Utility function to check if an object is a string
 function isString(obj) {
@@ -52,29 +48,23 @@ function fileDoesntExist(path) {
 
 // Custom Nunjucks environment
 // Adds filters to check if an object is a string or an array
-var nunjucksEnv = function(environment) {
-  environment.addFilter('is_string', function(obj) {
-    return isString(obj);
-  });
-  environment.addFilter('is_array', function(obj) {
-    return isArray(obj);
-  });
-  environment.addFilter('slugify', function(string) {
-    return slugify(string);
-  });
-}
+const nunjucksEnv = environment => {
+  environment.addFilter('is_string', obj => isString(obj));
+  environment.addFilter('is_array', obj => isArray(obj));
+  environment.addFilter('slugify', string => slugify(string));
+};
 
 
 // `gulp clean`
 // Clean the build directory
-gulp.task('clean', function(done) {
+gulp.task('clean', done => {
   rimraf('build', done);
 });
 
 
 // `gulp assets`
 // Copy various assets to the build directory
-gulp.task('assets', function() {
+gulp.task('assets', () => {
   gulp.src(ASSET_PATHS, {
     base: 'src'
   })
@@ -84,12 +74,12 @@ gulp.task('assets', function() {
 
 // `gulp templates`
 // Compile Nunjucks index template
-gulp.task('templates', function(){
+gulp.task('templates', () => {
   gulp.src('./src/index.njk')
     .pipe(nunjucks({
       path: ['src'],
       data: {
-        slides: slideManifest()
+        slides: slideManifest
       },
       manageEnv: nunjucksEnv
     }))
@@ -100,22 +90,22 @@ gulp.task('templates', function(){
 
 // `gulp slides`
 // Generate HTML files for slides named in the slideManifest.json
-gulp.task('slides', function(){
-  var writeSlideFile = function(name,label){
-    fs.writeFile('./src/slides/'+name+'.html', '<section title="'+label+'">\n\n</section>');
-    console.log('Created slide: '+name+'.html');
+gulp.task('slides', () => {
+  const writeSlideFile = (name, label) => {
+    fs.writeFile(`./src/slides/${name}.html`, `<section title="${label}">\n\n</section>`);
+    console.log(`Created slide: ${name}.html`);
   };
-  slideManifest().forEach(function(slide) {
+  slideManifest.forEach(slide => {
 
     if(isString(slide)) {
-      var name = slugify(slide);
-      if(fileDoesntExist('./src/slides/'+name+'.html')) {
+      const name = slugify(slide);
+      if(fileDoesntExist(`./src/slides/${name}.html`)) {
         writeSlideFile(name,slide);
       }
     } else if (isArray(slide)) {
-      slide.forEach(function(childSlide) {
-        var name = slugify(childSlide);
-        if(fileDoesntExist('./src/slides/'+name+'.html')) {
+      slide.forEach(childSlide => {
+        const name = slugify(childSlide);
+        if(fileDoesntExist(`./src/slides/${name}.html`)) {
           writeSlideFile(name,childSlide);
         }
       });
@@ -126,7 +116,7 @@ gulp.task('slides', function(){
 
 // `gulp scss`
 // Compile SCSS
-gulp.task('scss', function() {
+gulp.task('scss', () => {
   gulp.src('./src/scss/app.scss')
     .pipe(sass({
       includePaths: [
@@ -141,28 +131,28 @@ gulp.task('scss', function() {
 
 // `gulp javascript`
 // Bundle Javascript
-gulp.task('javascript', function() {
+gulp.task('javascript', () => {
   return browserify({
     entries: ['./src/js/app.js'],
     paths: ['./node_modules','./src/js/']
   })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./build/js'))
-    .pipe(browser.stream());
+  .bundle()
+  .pipe(source('app.js'))
+  .pipe(gulp.dest('./build/js'))
+  .pipe(browser.stream());
 });
 
 
 // `gulp build`
 // Build the whole thing
-gulp.task('build', function(done) {
+gulp.task('build', done => {
   sequence('clean', ['slides', 'templates', 'scss', 'javascript', 'assets'], done);
 });
 
 
 // `gulp server`
 // Run a development server
-gulp.task('server', ['build'], function() {
+gulp.task('server', ['build'], () => {
   browser.init({
     server: './build', port: PORT
   });
@@ -171,7 +161,7 @@ gulp.task('server', ['build'], function() {
 
 // `gulp`
 // Watch for changes, and do all the things
-gulp.task('default', ['server'], function() {
+gulp.task('default', ['server'], () => {
   gulp.watch(['src/img','src/img/**/*','src/fonts','src/fonts/**/*'], ['assets', browser.reload]);
   gulp.watch(['src/js/**/*.js'], ['javascript']);
   gulp.watch(['src/scss/**/*.scss'], ['scss']);
