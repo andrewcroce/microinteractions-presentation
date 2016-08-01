@@ -10,7 +10,15 @@
     <div class='reveal'>
       <div class='slides'>
         {% for slide in slides %}
-          {% include 'partials/slide.njk' %}
+          {% if slide.children %}
+            <section>
+            {% for childSlide in slide.children %}
+              {% include childSlide.partial %}
+            {% endfor %}
+            </section>
+          {% else %}
+            {% include slide.partial %}
+          {% endif %}
         {% endfor %}
       </div>
     </div>

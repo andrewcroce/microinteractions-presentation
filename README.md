@@ -20,7 +20,7 @@ Go to root of this repo: `cd your-deck-name`
 
 ## Development server
 
-Run `gulp` to build everything, and run a local development server with [Browsersync](https://www.browsersync.io/). Changes to your slides, slide manifest, SCSS, images, and JS are watched.
+Run `npm start` to build everything, and run a local development server with [Browsersync](https://www.browsersync.io/). Changes to your slides, slide manifest, SCSS, images, and JS are watched.
 
 
 ## The slide manifest
@@ -38,7 +38,7 @@ The order and nesting of slides is maintained in `src/slideManifest.json`. Enter
 ]
 ```
 
-Run `gulp slides` manually to generate an HTML file for each of these slides in the `slides/` directory, or generate automatically while `gulp` dev server is running. They filenames will automatically be slugified:
+Run `npm run slides` manually to generate an HTML file for each of these slides in the `slides/` directory, or generate automatically while `gulp` dev server is running. They filenames will automatically be slugified:
 
 ```
 1-title-slide.html
@@ -140,6 +140,6 @@ Check our [https://github.com/hakimel/reveal.js/](https://github.com/hakimel/rev
 
 ## Build
 
-Run `gulp build` to just build without running the server.
+Run `npm run build` to just build without running the server.
 
-Look at `gulpfile.js` for other gulp tasks.
+Run `gulp --tasks` to list all available gulp tasks.
