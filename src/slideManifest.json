@@ -1,13 +1,18 @@
 [
-  "0. PromptWorks",
-  "1. Title slide",
-  "2. Another slide",
-  [
-    "3-1. A nested slide",
-    "3-2. Another nested slide",
-    "3-3. Fun with colors"
-  ],
-  "4. Another slide",
-  "5. Cats!!!",
-  "6. Columns"
+  "0. Title",
+  "1. Mental Models",
+  "2. Interfaces",
+  "3. Features",
+  "4. Microinteractions",
+  "5. Details",
+  "6. Password Example",
+  "7. What have we learned",
+  "8. Security",
+  "9. Personality",
+  "10. Filling in blanks",
+  "11. Conversational language",
+  "12. Read context",
+  "13. Make assumptions",
+  "14. Summary",
+  "15. References"
 ]

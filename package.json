@@ -27,7 +27,6 @@
     "bourbon-neat": "^1.7.4",
     "browser-sync": "^2.12.12",
     "browserify": "^13.0.1",
-    "fs": "0.0.2",
     "gulp": "^3.9.1",
     "gulp-nunjucks-render": "^2.0.0",
     "gulp-sass": "^2.3.1",
